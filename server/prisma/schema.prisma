@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  fullName     String
+  role         String   // ADMIN, ADMINISTRATIVO, ENFERMEIRO, MEDICO
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  assessments  Assessment[]
+  treatments   Utente[]     @relation("DoctorUtente")
+  auditLogs    AuditLog[]
+  chatSent     ChatMessage[] @relation("ChatMessageFrom")
+  chatReceived ChatMessage[] @relation("ChatMessageTo")
+  chatThreadStates ChatThreadState[]
+}
+
+model Utente {
+  id            String        @id @default(uuid())
+  name          String
+  dob           DateTime?
+  age           Int?
+  gender        String?
+  contact       String?
+  processNumber String        // Nº processo interno (pode repetir em várias visitas)
+  arrivalTime   DateTime      @default(now())
+  triageStartAt DateTime?
+  status        String        // AGUARDANDO_PRE_AVALIACAO, AGUARDANDO_MEDICO, EM_ATENDIMENTO, ENCERRADO
+  
+  assessments   Assessment[]
+  
+  doctorId      String?
+  doctor        User?         @relation("DoctorUtente", fields: [doctorId], references: [id])
+  
+  completedAt   DateTime?
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Assessment {
+  id           String        @id @default(uuid())
+  utenteId     String
+  utente       Utente        @relation(fields: [utenteId], references: [id])
+  
+  nurseId      String
+  nurse        User          @relation(fields: [nurseId], references: [id])
+  
+  color        String        // VERDE, AMARELO, VERMELHO
+  observations String?       // SQLite não tem @db.Text, String suporta texto longo
+  ecgDone      Boolean       @default(false)
+  comburDone   Boolean       @default(false)
+  bloodPressure String?
+  waitingRoom  String?
+  heartRate    Int?
+  temperature  Float?
+  respiratoryRate Int?
+  pain         Int?
+  spo2         Int?
+  glucose      Int?
+  
+  createdAt    DateTime      @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  targetId  String?
+  details   String?
+  timestamp DateTime @default(now())
+}
+
+model ChatMessage {
+  id         String   @id @default(uuid())
+  fromUserId String
+  fromUser   User     @relation("ChatMessageFrom", fields: [fromUserId], references: [id])
+  toRole     String?
+  toUserId   String?
+  toUser     User?    @relation("ChatMessageTo", fields: [toUserId], references: [id])
+  message    String
+  createdAt  DateTime @default(now())
+}
+
+model ChatThreadState {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  threadKey String
+  archived  Boolean  @default(false)
+  deletedAt DateTime?
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, threadKey])
+  @@index([userId, archived])
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

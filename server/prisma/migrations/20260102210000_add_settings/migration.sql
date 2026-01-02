@@ -1,0 +1,6 @@
+-- Add settings table
+CREATE TABLE IF NOT EXISTS "Setting" (
+  "key" TEXT NOT NULL PRIMARY KEY,
+  "value" TEXT NOT NULL,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
