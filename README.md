@@ -23,6 +23,12 @@
 
 ---
 
+## Demo
+
+![demo](https://github.com/user-attachments/assets/feb03b01-990f-4d8d-8bf2-82971989475a)
+
+---
+
 <details open>
 <summary><strong>🇬🇧 English</strong></summary>
 
