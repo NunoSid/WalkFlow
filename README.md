@@ -120,6 +120,26 @@ Default values are suitable for local development.
 > The `.env` file is intentionally excluded from version control.
 
 ---
+## Demo Access
+
+The WalkFlow demo environment includes **preconfigured demo accounts** to explore the platform features.
+
+> ⚠️ **Important**
+>
+> These credentials are **for demonstration purposes only**.
+> They do **not** contain real patient data and must **never** be used in production environments.
+
+### Demo Accounts
+
+| Role | Username | Password |
+|---|---|---|
+| Nurse | `nurse_demo` | `demo123` |
+| Coordinator | `coord_demo` | `demo123` |
+| Administrator | `admin_demo` | `demo123` |
+
+Role-based access control (RBAC) is enforced, and each profile exposes different operational capabilities.
+
+---
 
 ## Security Notes (Minimum)
 
@@ -209,6 +229,25 @@ Os valores por defeito são adequados para desenvolvimento local.
 
 > O ficheiro `.env` encontra‑se intencionalmente excluído do controlo de versões.
 
+---
+## Acesso Demo
+
+O ambiente de demonstração do WalkFlow inclui **contas de acesso pré-configuradas** para exploração das funcionalidades da plataforma.
+
+> ⚠️ **Aviso Importante**
+>
+> Estas credenciais destinam-se **exclusivamente a fins de demonstração**.
+> Não contêm dados reais de utentes e **não devem ser utilizadas em ambiente produtivo**.
+
+### Contas de Demonstração
+
+| Perfil | Utilizador | Palavra-passe |
+|---|---|---|
+| Enfermeiro | `nurse_demo` | `demo123` |
+| Coordenador | `coord_demo` | `demo123` |
+| Administrador | `admin_demo` | `demo123` |
+
+O controlo de acessos por perfil (RBAC) encontra-se ativo, estando cada utilizador limitado às permissões do respetivo papel.
 ---
 
 ## Licença
