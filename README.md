@@ -133,9 +133,7 @@ The WalkFlow demo environment includes **preconfigured demo accounts** to explor
 
 | Role | Username | Password |
 |---|---|---|
-| Nurse | `nurse_demo` | `demo123` |
-| Coordinator | `coord_demo` | `demo123` |
-| Administrator | `admin_demo` | `demo123` |
+| Administrator | `admin` | `123456` |
 
 Role-based access control (RBAC) is enforced, and each profile exposes different operational capabilities.
 
@@ -243,9 +241,7 @@ O ambiente de demonstração do WalkFlow inclui **contas de acesso pré-configur
 
 | Perfil | Utilizador | Palavra-passe |
 |---|---|---|
-| Enfermeiro | `nurse_demo` | `demo123` |
-| Coordenador | `coord_demo` | `demo123` |
-| Administrador | `admin_demo` | `demo123` |
+| Administrador | `admin` | `123456` |
 
 O controlo de acessos por perfil (RBAC) encontra-se ativo, estando cada utilizador limitado às permissões do respetivo papel.
 ---
